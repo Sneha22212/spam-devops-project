@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Spam Detection</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        margin: auto;
+        width: 40%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      textarea {
+        width: 90%;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .spam {
+        color: red;
+      }
+
+      .ham {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>📧 AI Spam Detection System</h1>
+
+      <form action="/predict" method="post">
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Enter your message here..."
+        ></textarea>
+        <br /><br />
+        <button type="submit">Check Message</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result">
+        Result:
+        <span class="{{ 'spam' if 'Spam' in prediction else 'ham' }}">
+          {{ prediction }}
+        </span>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
